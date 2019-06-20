@@ -6,8 +6,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 import static tool.DaoMs.*;
 
-@Component
-@Scope(value=WebApplicationContext.SCOPE_SESSION,proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class policy {
  private String policyid;
  private String ms;
@@ -31,7 +29,14 @@ public void setRid(String rid) {
 	this.rid = rid;
 }
 public String toString() {
-	return getClassMs(this);
+	try {
+		return getClassMs(this);
+	} catch (IllegalArgumentException | IllegalAccessException e) {
+		// TODO Auto-generated catch block
+		
+		e.printStackTrace();
+		return null;
+	}
 }
  
 }

@@ -13,6 +13,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.type.JdbcType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
@@ -20,7 +21,6 @@ import org.springframework.web.context.WebApplicationContext;
 
 import domain.owner;
 //
-@Component
 @Mapper()
 public interface OwnerRepo {
 	@Results(id="OwnerMap", value={ 
@@ -34,38 +34,37 @@ public interface OwnerRepo {
 	@Select("select * from lab.owner")
 	public List<owner> getAllOwner();
 	
-	@Select("select * from lab.owner where ownerid=#{ownerid};")
+	@Select("select * from lab.owner where ownerid=#{ownerid}")
 	@ResultMap(value="OwnerMap")
 	public owner getOwner(@Param("ownerid")String ownerid);
 	
 	//@Delete("delete from lab.owner where ownerid in ")
 	//@ResultMap(value="OwnerMap")
 	//public int batchdelOwner();
-	@Select("select * from lab.owner where ownerid=#{ownerid} and password=md5(#{password});")
+	@Select("select *  from lab.owner where ownerid=#{ownerid} and password=md5(#{password})")
 	@ResultMap(value="OwnerMap")
-	@Autowired
 	public owner getLogin(@Param("ownerid")String ownerid,@Param("password")String password);
 	
 	@Select("select * from lab.owner where ownerid like #{ownerid} and ownername like #{ownername} and "
-			+ "ownertel like #{ownertel} and ownertel like #{ownertel} and wuyeid like #{wuyeid}; ")
+			+ "ownertel like #{ownertel} and ownertel like #{ownertel} and wuyeid like #{wuyeid} ")
 	@ResultMap(value="OwnerMap")
 	public List<owner> getOwnerInParam(@Param("ownerid")String ownerid,
 			@Param("ownername")String ownername ,@Param("ownertel")String ownertel,@Param("wuyeid") String wuyeid);
 	
 	
 	
-	@Insert("insert into lab.owner (ownerid,password,ownername,ownertel,NewMs) values(#{ownerid},"
-			+ "md5(#{password}),#{ownername},#{ownertel},#{NewMs});")
+	@Insert("insert into lab.owner (ownerid,password,ownername,ownertel,wuyeid) values(#{ownerid},"
+			+ "md5(#{password}),#{ownername},#{ownertel},#{wuyeid})")
 	@ResultMap(value="OwnerMap")
 	public int InsertOwner(@Param("ownerid")String ownerid,@Param("password")String password,
-			@Param("ownername")String ownername ,@Param("ownertel")String ownertel);
+			@Param("ownername")String ownername ,@Param("ownertel")String ownertel,@Param("wuyeid")String wuyeid);
 	
-	@Delete("delete from lab.owner where ownerid=#{ownerid};")
+	@Delete("delete from lab.owner where ownerid=#{ownerid}")
 	@ResultMap(value="OwnerMap")
 	public int DelOwner(@Param("ownerid")String ownerid);
 	
 	@Update("update lab.owner set " +"password=md5(#{password}),ownername=#{ownername},ownertel=#{ownertel} "
-			+ "where ownerid=#{ownerid};")
+			+ "where ownerid=#{ownerid}")
 	@ResultMap(value="OwnerMap")
 	public int UpdateOwner(@Param("ownerid")String ownerid,@Param("password")String password,
 			@Param("ownername")String ownername ,@Param("ownertel")String ownertel);

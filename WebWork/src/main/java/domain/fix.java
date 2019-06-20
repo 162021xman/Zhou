@@ -1,14 +1,13 @@
 package domain;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.stereotype.Component;
-import org.springframework.web.context.WebApplicationContext;
+
 import static tool.DaoMs.*;
-@Component
-@Scope(value=WebApplicationContext.SCOPE_SESSION,proxyMode=ScopedProxyMode.TARGET_CLASS)
+
+import java.util.Date;
+
 public class fix {
 private String fixid,fixms,fixtype,rid;
+private Date time;
 public String getFixid() {
 	return fixid;
 }
@@ -40,8 +39,23 @@ public String getRid() {
 public void setRid(String rid) {
 	this.rid = rid;
 }
+public Date getTime() {
+	return time;
+}
+
+public void setTime(Date time) {
+	this.time = time;
+}
+
 public String toString() {
-	return getClassMs(this);
+	try {
+		return getClassMs(this);
+	} catch (IllegalArgumentException | IllegalAccessException e) {
+		// TODO Auto-generated catch block
+		
+		e.printStackTrace();
+		return null;
+	}
 }
 
 }

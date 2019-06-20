@@ -8,8 +8,6 @@
 	th:src="@{webjars/jquery/3.0.0/jquery.min.js}"></script>
 	<script type="text/javascript"
 		th:src="@{webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
-	 <link rel="stylesheet" th:href="@{/css/style.css}" />
-<script type="text/javascript" th:src="@{/js/login.js}"></script>
 <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -37,8 +35,8 @@
                 <img src="images/img.jpg" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <span>欢迎,</span>
-                <h2>访问者</h2>
+                <span >欢迎,</span >
+                <h2 th:text="${owner.ownername}"></h2>
               </div>
               <div class="clearfix"></div>
             </div>
@@ -63,7 +61,13 @@
                   <li><a href="tables.html"><i class="fa fa-table"></i> 预约查询 <span class="fa fa-chevron-down"></span></a>
                    
                   </li>
-                  
+                  <li><a href="UpdatePs"><i class="fa fa-table"></i> 修改密码 <span class="fa fa-chevron-down"></span></a>
+                   
+                  </li>
+                  <li><a href="fix"><i class="fa fa-table"></i> 在线报修 <span class="fa fa-chevron-down"></span></a>
+                   
+                  </li>
+                  </ul>
               </div>
 
 
@@ -119,7 +123,7 @@
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green" th:text="${owner}"></span>
+                    <span class="badge bg-green" th:text="${ownerNewMs}"></span>
                   </a>
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                     <li>

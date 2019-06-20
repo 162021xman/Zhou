@@ -8,8 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 import static tool.DaoMs.*;
 
-@Component
-@Scope(value=WebApplicationContext.SCOPE_SESSION,proxyMode=ScopedProxyMode.TARGET_CLASS)
+
 public class renting {
   private String ownerid;
   private String rid;
@@ -40,6 +39,13 @@ public void setRenttime(Date renttime) {
 }
 private Date renttime;
 public String toString() {
-	return getClassMs(this);
+	try {
+		return getClassMs(this);
+	} catch (IllegalArgumentException | IllegalAccessException e) {
+		// TODO Auto-generated catch block
+		
+		e.printStackTrace();
+		return null;
+	}
 }
 }

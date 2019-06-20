@@ -15,7 +15,11 @@ public interface RoomRepo {
 	@Select("select * from lab.room")
 	public List<room> getAllRoom();
 	
-	@Select("select * from lab.room where rid=#{rid};")
+	@Select("select * from lab.room where owner_id=#{owner_id}")
+	@ResultMap(value="RoomMap")
+	public List<room> getRoomOwnerid(@Param("owner_id")String owner_id);
+	
+	@Select("select * from lab.room where rid=#{rid}")
 	@ResultMap(value="RoomMap")
 	public room getRoom(@Param("rid")String rid);
 	
@@ -28,7 +32,7 @@ public interface RoomRepo {
 	@ResultMap(value="RoomMap")
 	public int DelOwner(@Param("rid")String rid);
 	
-	@Update("update lab.room set rid=#{rid},rooms=#{rooms},space=#{space},owner_id=#{owner_id}")
+	@Update("update lab.room set rooms=#{rooms},space=#{space},owner_id=#{owner_id} where rid=#{rid}")
 	@ResultMap("RoomMap")
 	public int UpdateRoom(@Param("rid")String rid,@Param("rooms")String rooms,
 			@Param("space")String space,@Param("owner_id")String owner_id);

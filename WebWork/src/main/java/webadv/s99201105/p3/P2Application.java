@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+import com.fan.entity.OwnerRepo;
 import com.fan.entity.RentingRepo;
 @SpringBootApplication
 @ComponentScan(basePackages= {"example","webadv.s99201105.p3","domain","repository",

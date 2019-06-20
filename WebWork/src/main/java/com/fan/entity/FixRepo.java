@@ -1,5 +1,6 @@
 package com.fan.entity;
 
+import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
@@ -12,15 +13,17 @@ public interface FixRepo{
 		    @Result(property = "fixid", column = "fixid"), 
 		    @Result(property = "fixms", column = "fixms"),
 		    @Result(property = "fixtype", column = "fixtype"),
-		    @Result(property = "rid", column = "rid")
+		    @Result(property = "rid", column = "rid"),
+		    @Result(property="time",column="time")
 			})
 	@Select("select * from lab.fix;")
 	public List<fix> getAllfix();
 	
-	@Insert("insert into  lab.fix(fixid,fixms,fixtype,rid) values (#{fixid},#{fixms},#{fixtype},#{rid});")
+	@Insert("insert into  lab.fix(fixid,fixms,fixtype,rid,time) values (#{fixid},#{fixms},#{fixtype},"
+			+ "#{rid},#{time})")
 	@ResultMap("FixMap")
 	public int InsertFix(@Param("fixid")String fixid,@Param("fixms")String fixms,
-			@Param("fixtype")String fixtype,@Param("rid")String rid);
+			@Param("fixtype")String fixtype,@Param("rid")String rid,@Param("time")Date time);
 	
 	@Delete("delete from lab.fix where fixid=#{fixid};")
 	@ResultMap("FixMap")
@@ -31,5 +34,10 @@ public interface FixRepo{
 	public int UpdateFix(@Param("fixid")String fixid,@Param("fixms")String fixms,
 			@Param("fixtype")String fixtype,@Param("rid")String rid);
 	
+	@Results(value= {
+			@Result(property="fixid",column="MAX(fixid)")
+	})
+	@Select("select MAX(fixid) from lab.fix")
+	public String getMaxPk();
 	
 }

@@ -16,7 +16,8 @@ public interface RentingRepo {
 		    @Result(property = "rid", column = "rid"), 
 		    @Result(property = "ownerid", column = "ownerid"),
 		    @Result(property = "rentmoney", column = "rentmoney",jdbcType=JdbcType.FLOAT),
-		    @Result(property = "renttime", column = "renttime",jdbcType=JdbcType.DATETIMEOFFSET)
+		    @Result(property = "renttime", column = "renttime",jdbcType=JdbcType.DATE),
+		    @Result(property = "fortime", column = "fortime",jdbcType=JdbcType.INTEGER)
 			})
 	@Select("select * from lab.renting")
 	public List<renting> getAllrenting();

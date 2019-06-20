@@ -5,15 +5,20 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 import static tool.DaoMs.*;
 
-@Component
-@Scope(value=WebApplicationContext.SCOPE_SESSION,proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class room {
   private String rid;
   private String rooms;
   private String owner_id;
   private String space;
   public String toString() {
-		return getClassMs(this);
+		try {
+			return getClassMs(this);
+		} catch (IllegalArgumentException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			
+			e.printStackTrace();
+			return null;
+		}
 	}
   public String getOwner_id() {
 	return owner_id;

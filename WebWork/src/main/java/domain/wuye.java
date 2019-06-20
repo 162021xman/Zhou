@@ -6,18 +6,24 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 import static tool.DaoMs.*;
 
-@Component
-@Scope(value=WebApplicationContext.SCOPE_SESSION,proxyMode=ScopedProxyMode.TARGET_CLASS)
+
 public class wuye {
- private int id;
- private String ms;
+ private String id;
+ private String ms,password;
  public String toString() {
-		return getClassMs(this);
+		try {
+			return getClassMs(this);
+		} catch (IllegalArgumentException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			
+			e.printStackTrace();
+			return null;
+		}
 	}
-public int getId() {
+public String getId() {
 	return id;
 }
-public void setId(int id) {
+public void setId(String id) {
 	this.id = id;
 }
 public String getMs() {
@@ -26,5 +32,12 @@ public String getMs() {
 public void setMs(String ms) {
 	this.ms = ms;
 }
+public String getPassword() {
+	return password;
+}
+public void setPassword(String password) {
+	this.password = password;
+}
+
  
 }
