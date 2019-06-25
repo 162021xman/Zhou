@@ -1,4 +1,4 @@
-package webadv.s99201105.p3;
+package Controllers;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +33,8 @@ import com.fan.entity.RoomRepo;
 
 import Services.OwnerSub;
 
-@Controller("home")
+@Controller
+@SessionAttributes(names= {"wuye","wuyes","owner","owners"})
 public class HomeController {
  @RequestMapping("/")
   public String  index() {
@@ -40,7 +42,22 @@ public class HomeController {
 		//System.out.println(ownerrepo.getOwner("162021").getOwnername().hashCode());
 		//System.out.println(ownerrepo.getOwner("162021").getOwnername().toString());
 		//System.out.println(this.toString());
-   return "redirect:login.html";
+   return "login";
 	 
   }
+ @RequestMapping("login2")
+ public String Login() {
+	 return "login2";
+ }
+ @RequestMapping("home")
+ public String Home() {
+	 return "home";
+ }
+ 
+ @RequestMapping("home2")
+ public String Home2(@ModelAttribute("wuye")wuye thiso,ModelMap modelmap,Model model) {
+	model.addAttribute("wuye",thiso);
+	 
+	 return "home2";
+ }
 }

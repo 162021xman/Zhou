@@ -25,13 +25,16 @@
 <div th:include="find :: commonNav">
    
 </div>
-  <form th:action="add+'/'+${name}" method="post">
+ <div>
+  <div id="add"> 
   <div th:each="owner,ownerStat : ${attrs}">
   <h2 th:text="${owner}"></h2>
   <input type="text"  th:name="${owner}">
   </div>
-  <input type="submit" class="btn btn-primary" value="添加"> 
-  </form>
+  </div>
+  <input type="button" class="btn btn-primary" value="添加" onclick="ajax(this)"> 
+  
+  </div>
 </body>
 
 </html>

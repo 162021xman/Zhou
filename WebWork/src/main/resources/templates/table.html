@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<script type="text/javascript"
+	th:src="@{webjars/jquery/3.0.0/jquery.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+ </head> 
+ <body> 
+<div th:fragment="commonTable">
+ <table  border="1" id="table" th:if="${not #lists.isEmpty(owners)}">
+                    <tr id="message">
+                    <th th:each="attr,attrStat : ${attrs}" th:text="${attr}"></th>
+                    </tr>
+               <tr th:each="owner,ownerStat : ${owners}"><td name="ownerid" th:text="${owner.ownerid}"></td>
+               <td th:text="${owner.ownername}"></td>
+               <td th:text="${owner.ownertel}"></td>
+               <td><input type="button" onclick="del(this)" value="修改"></td>
+               <td><input type="button" onclick="del(this)" value="删除"></td>
+               </tr>
+                    </table>
+</div> 
+</body>
+</html>

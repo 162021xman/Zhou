@@ -17,7 +17,7 @@ public interface wuyeRepo {
 	@Select("select * from lab.wuye where id like #{id} and ms like #{ms}")
 	@ResultMap("wuyeMap")
 	public List<wuye> getwuye(@Param("id")String id,@Param("ms")String ms);
-	@Select("@Select * from lab.wuye where  wuyeid=#{wuyeid} and password=md5(#{password})")
+	@Select("select * from lab.wuye where  id=#{id} and password=md5(#{password})")
 	public wuye getLoginwuye(@Param("id")String id,@Param("password") String password);
 	
 	@Insert("insert into lab.wuye(id,password,ms) values(#{id},md5(#{password}),#{ms})")

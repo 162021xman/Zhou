@@ -7,13 +7,15 @@
 	<script type="text/javascript"
 	th:src="@{webjars/jquery/3.0.0/jquery.min.js}"></script>
 	<script type="text/javascript"
+	th:src="@{/js/home2.js}"></script>
+	<script type="text/javascript"
 		th:src="@{webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
 <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
     <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
-
+    <link href="/css/style.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="/build/css/custom.min.css" rel="stylesheet">
 </head>
@@ -47,15 +49,15 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3>General</h3>
+                <h3 th:text="${wuye.id}"></h3>
                 <ul class="nav side-menu">
-                  <li><a th:href="level2.html"><i class="fa fa-home"></i> 物业通知 <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="javascript:;" onclick="wuyenews()"><i class="fa fa-home"></i> 物业通知 <span class="fa fa-chevron-down"></span></a>
                   </li>
-                  <li><a href="SelectAllowners"><i class="fa fa-edit"></i> 业主信息<span class="fa fa-chevron-down"></span></a>
+                  <li><a href="SelectAllowners"  ><i class="fa fa-edit"></i> 业主信息<span class="fa fa-chevron-down"></span></a>
                   </li>
-                  <li><a href=".html"><i class="fa fa-desktop"></i>保修信息<span class="fa fa-chevron-down"></span></a>
+                  <li><a href=".html"><i class="fa fa-desktop"></i>报修信息<span class="fa fa-chevron-down"></span></a>
                   </li>
-                  <li><a href="InsertOwner"><i class="fa fa-table"></i> 添加业主 <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="Insertowner"><i class="fa fa-table"></i> 添加业主 <span class="fa fa-chevron-down"></span></a>
                    
                   </li>
                   </ul>
@@ -186,16 +188,19 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Plain Page</h3>
+                <h3 th:if="${not #strings.isEmpty(title)}" th:text="${title}"></h3>
               </div>
 
               <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
+                  
+                    <input name="ownerid"type="text" class="form-control" placeholder="Search for...">
+                  
                     <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
+                    <button class="btn btn-default" onclick="select(this)">Go!</button>
                     </span>
+                
                   </div>
                 </div>
               </div>
@@ -207,7 +212,9 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Plain Page</h2>
+                  <div >
+                    <h2 th:if="${not #strings.isEmpty(title)}" th:text="${title}"></h2>
+                    </div>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -225,8 +232,8 @@
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content">
-                    
+                  <div id="content"class="x_content">
+                    <div th:include="table :: commonTable">
                   </div>
                 </div>
               </div>
@@ -238,14 +245,14 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            写字楼服务平台
           </div>
           <div class="clearfix"></div>
         </footer>
         <!-- /footer content -->
       </div>
     </div>
-
+</div>
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -257,5 +264,6 @@
     
     <!-- Custom Theme Scripts -->
     <script src="/js/custom.min.js"></script>
+    
   </body>
 </html>

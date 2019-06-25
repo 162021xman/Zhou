@@ -7,7 +7,7 @@ function ajax(min){
 	if(rep.test(oldps)&&rep.test(newps))
 		if(oldps==newps)
 			$.ajax({
-        url: "http://localhost:8080"+ppath+"M",
+        url: "http://localhost:8080/Loginwuye",
         type:"Post",
         data:{"oldps":oldps,"newps":newps},
         datatype:"String",

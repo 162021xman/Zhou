@@ -1,24 +1,39 @@
-function  checktext() {	
-	var rep=/^[A-Za-z0-9]{6,15}$/;//在Css内规定长度为（6，15）
-	var $j=$("#submit-login").siblings("input");
-	if(rep.test($j[0].value)&&rep.test($j[1].value)){
-   return true;
+function  checktext(min) {	
+	var rep=/^[A-Za-z0-9]{5,15}$/;//在Css内规定长度为（6，15）
+	var $j=$(min).siblings("input");
+	//alert($j[1].value);
+	if(rep.test($j[1].value)){
+		var datas={"id":$j[0].value,"password":$j[1].value};
+		ajax("post",datas,"home2");
 	}	
-	alert("不符合格式请重新输入");
-	return false; 
+	else
+	alert("不符合格式请重新输入"); 
 
 }
-function getText(){//测试输入不为空值
-	
+function check(min){//测试输入不为空值
+	var rep=/^[A-Za-z0-9]{5,15}$/;//在Css内规定长度为（6，15）
+	var $j=$(min).siblings("input");
+	if(rep.test($j[0].value)&&rep.test($j[1].value)){
+		return true;
+	}	
+	else
+	alert("不符合格式请重新输入"); 
+	return false;
 };
-function ajax(){
+function ajax(method,datas,href){
+	var ppath=window.location.pathname;
 	$.ajax({
-        url: "http://localhost:8080/login/"+$("#text1").val(),
-        type:"get",
+        url: "http://localhost:8080"+ppath+"M",
+        type:method,
+        data:JSON.stringify(datas),
         datatype:"json",
+        contentType : "application/json;charset=utf8",
+        //xhrFields: {withCredentials: true},
         success:function(data){
-        	$("#ch2").remove();
-        	$("#content").append("<h2 id='ch2'>"+data.a+":"+data.s+"</h2>");
+        	if(data!="error")
+        	window.location.href=data;
+        	else
+        		alert("连接失败");
         },
         error:function(data){
         	alert("fail");
