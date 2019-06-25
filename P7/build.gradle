@@ -20,6 +20,6 @@ dependencies {
 	compile 'org.springframework.boot:spring-boot-devtools'
     compile 'org.webjars:bootstrap:4.3.1'
     compile 'mysql:mysql-connector-java:5.1.47'
-   // implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+   testImplementation 'org.springframework.boot:spring-boot-starter-jdbc'
    compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.1'
 }
