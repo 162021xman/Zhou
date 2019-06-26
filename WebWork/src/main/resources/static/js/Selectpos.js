@@ -1,0 +1,3 @@
+function selectRooms(min){
+	$(min).
+}

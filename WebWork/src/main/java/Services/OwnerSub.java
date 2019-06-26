@@ -13,13 +13,21 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
 import com.fan.entity.OwnerRepo;
+import com.fan.entity.PolicyRepo;
+import com.fan.entity.RoomRepo;
 
 import domain.owner;
+import domain.policy;
+import domain.room;
 @Service
 //@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE,proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class OwnerSub {
  @Autowired
  private OwnerRepo o;
+ @Autowired
+ private PolicyRepo porepo;
+ @Autowired
+ private RoomRepo repo;
  //@Resource
  //private List<owner> owners;
  //@Autowired(required=false)
@@ -90,5 +98,11 @@ public class OwnerSub {
  }
  public List<owner> getOwnerInparam(String ownerid,String ownername,String ownertel,String wuyeid){
 	 return o.getOwnerInParam(ownerid, ownername, ownertel, wuyeid);
+ }
+ public List<policy> getAllpos(){
+	return porepo.getAllpolicy();
+ }
+ public List<room> getBypo(String policyid){
+	 return repo.getRoomBypo(policyid);
  }
 }

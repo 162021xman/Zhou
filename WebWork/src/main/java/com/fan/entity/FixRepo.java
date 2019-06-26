@@ -40,4 +40,7 @@ public interface FixRepo{
 	@Select("select MAX(fixid) from lab.fix")
 	public String getMaxPk();
 	
+	@Delete("delete from lab.fix where rid=#{rid}")
+	@ResultMap("FixMap")
+	public int DelFixInRid(@Param("rid")String rid);
 }

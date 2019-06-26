@@ -238,8 +238,8 @@
                   </div>
                   <div id='content'class='x_content'>
                          <div id="fix" th:fragment="commonFix" th:if="${not #lists.isEmpty(listroom)}">
-<select th:each="room,roomStat : ${listroom}">
-<option id="rid" th:value="${room.rid}" th:text="${room.rid}">
+<select >
+<option th:each="room,roomStat : ${listroom}" id="rid" th:value="${room.rid}" th:text="${room.rid}">
 </select>
          报修类型<input type="text" id="fixtype">
          说明<textarea id="fixms" rows="" cols=""></textarea>

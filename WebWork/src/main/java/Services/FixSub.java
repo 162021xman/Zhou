@@ -23,6 +23,12 @@ public class FixSub {
 	return false;
 	
  }
+ public boolean DeleteFixInRid(String rid) {
+	 if(fix.DelFixInRid(rid)>0)
+		 return true;
+	 return false;
+	 
+ }
  public String getMaxPk() {
 	 return fix.getMaxPk();
  }

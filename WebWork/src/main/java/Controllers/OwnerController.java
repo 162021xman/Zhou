@@ -39,6 +39,7 @@ import Services.FixSub;
 import Services.OwnerSub;
 import Services.roomSub;
 import domain.owner;
+import domain.policy;
 import domain.renting;
 import domain.room;
 @Controller
@@ -124,5 +125,13 @@ public class OwnerController {
 		model.addAttribute("attrs",attrs);
 		return "add";
 	}
-	
+	@GetMapping("SelectPolicy")
+	 public String Policy(Model model) {
+		List<policy> pos=ownersub.getAllpos();
+		model.addAttribute("pos",pos);
+		List<String> attrs=new ArrayList<String>();
+		attrs.add("优惠信息");
+		model.addAttribute("attrs",attrs);
+		 return "SelectPolicy";
+	 }
 }

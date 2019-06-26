@@ -10,6 +10,8 @@ public class room {
   private String rooms;
   private String owner_id;
   private String space;
+  private String pid;
+  private String wuyeid;
   public String toString() {
 		try {
 			return getClassMs(this);
@@ -45,4 +47,17 @@ public String getSpace() {
 public void setSpace(String space) {
 	this.space = space;
 }
+public String getPid() {
+	return pid;
+}
+public void setPid(String pid) {
+	this.pid = pid;
+}
+public String getWuyeid() {
+	return wuyeid;
+}
+public void setWuyeid(String wuyeid) {
+	this.wuyeid = wuyeid;
+}
+
 }

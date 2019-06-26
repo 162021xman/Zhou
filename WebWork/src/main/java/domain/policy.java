@@ -6,10 +6,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 import static tool.DaoMs.*;
 
+import java.util.Date;
+
 public class policy {
  private String policyid;
  private String ms;
  private String rid;
+ private Date startime;
+ private int days;
 public String getPolicyid() {
 	return policyid;
 }
@@ -27,6 +31,19 @@ public String getRid() {
 }
 public void setRid(String rid) {
 	this.rid = rid;
+}
+
+public Date getStartime() {
+	return startime;
+}
+public void setStartime(Date startime) {
+	this.startime = startime;
+}
+public int getDays() {
+	return days;
+}
+public void setDays(int days) {
+	this.days = days;
 }
 public String toString() {
 	try {

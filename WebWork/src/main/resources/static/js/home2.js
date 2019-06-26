@@ -17,7 +17,8 @@ function select(min){
         				"</tr>");
         	}
         	
-        },
+        }
+        ,//window.location.href="",
         error:function(data){
         	alert("fail");
         }

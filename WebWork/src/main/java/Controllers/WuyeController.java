@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import Services.FixSub;
 import Services.OwnerSub;
 import Services.WuyeSub;
+import domain.fix;
 import domain.login;
 import domain.owner;
 import domain.wuye;
@@ -30,6 +32,8 @@ public class WuyeController {
   private WuyeSub wuyesub;
   @Autowired
   private OwnerSub ownersub;
+  @Autowired
+  private FixSub fixsub;
   @GetMapping("policy")
   public String getPolicy(Model model) {
 	 
@@ -112,4 +116,22 @@ public class WuyeController {
 		  return "删除成功";
 	  return "删除失败";
   }
+  @GetMapping("FixMs")
+  public String getFixMs(Model model) {
+	 List<fix> fixs= fixsub.getAllFix();
+	 model.addAttribute("owners",fixs);
+	 String attrs[]= {"房间号","类型","说明","时间"};
+	 model.addAttribute("attrs",attrs);
+	 return "FixMs";
+  }
+  @PostMapping("DeleteFixM")
+  @ResponseBody
+  public String DeleteFix(String rid) {
+	if(fixsub.DeleteFixInRid(rid))
+		return "删除成功"
+				+ "";
+	return "fail";
+  }
+  
+  
 }

@@ -1,6 +1,7 @@
 function ajax(min){
 	var ppath=window.location.pathname;
 	var rid=$("#rid").val();
+	alert(rid);
 	var fixms=$("#fixms").val();
 	var fixtype=$("#fixtype").val();
 			$.ajax({
